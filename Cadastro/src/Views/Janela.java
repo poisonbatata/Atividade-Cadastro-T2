@@ -91,6 +91,7 @@ class CadastroEventoPanel extends JPanel {
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Evento: "+nomeField.getText()+" adicionada!");
                 //
                 //
                 // FAZER A LÓGICA PRO BOTÃO
@@ -123,6 +124,7 @@ class AssociacaoPanel extends JPanel {
         associarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Associação: "+cpfField.getText()+" e "+eventoField.getText()+" adicionada!");
                 //
                 //
                 // FAZER A LÓGICA PRO BOTÃO
