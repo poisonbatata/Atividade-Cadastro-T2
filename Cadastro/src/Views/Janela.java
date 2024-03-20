@@ -34,20 +34,20 @@ class CadastroPessoaPanel extends JPanel {
     private JButton cadastrarButton;
 
     public CadastroPessoaPanel() {
-        setLayout(new GridLayout(4, 2));
+        this.setLayout(new GridLayout(4, 2));
 
-        add(new JLabel("Nome:"));
+        this.add(new JLabel("Nome:"));
         nomeField = new JTextField();
-        add(nomeField);
+        this.add(nomeField);
 
-        add(new JLabel("CPF:"));
+        this.add(new JLabel("CPF:"));
         cpfField = new JTextField();
-        add(cpfField);
+        this.add(cpfField);
 
-        add(new JLabel("Email:"));
+        this.add(new JLabel("Email:"));
         emailField = new JTextField();
-        add(emailField);
-        setBackground(Color.YELLOW);
+        this.add(emailField);
+        this.setBackground(Color.YELLOW);
 
         cadastrarButton = new JButton("Cadastrar");
         cadastrarButton.addActionListener(new ActionListener() {
@@ -72,20 +72,20 @@ class CadastroEventoPanel extends JPanel {
     private JButton cadastrarButton;
 
     public CadastroEventoPanel() {
-        setLayout(new GridLayout(4, 2));
-        setBackground(Color.GREEN);
+        this.setLayout(new GridLayout(4, 2));
+        this.setBackground(Color.GREEN);
 
-        add(new JLabel("Nome:"));
+        this.add(new JLabel("Nome:"));
         nomeField = new JTextField();
-        add(nomeField);
+        this.add(nomeField);
 
-        add(new JLabel("Tipo:"));
+        this.add(new JLabel("Tipo:"));
         tipoField = new JTextField();
-        add(tipoField);
+        this.add(tipoField);
 
-        add(new JLabel("Local:"));
+        this.add(new JLabel("Local:"));
         localField = new JTextField();
-        add(localField);
+        this.add(localField);
 
         cadastrarButton = new JButton("Cadastrar");
         cadastrarButton.addActionListener(new ActionListener() {
@@ -99,7 +99,7 @@ class CadastroEventoPanel extends JPanel {
                 //
             }
         });
-        add(cadastrarButton);
+        this.add(cadastrarButton);
     }
 }
 
@@ -109,16 +109,16 @@ class AssociacaoPanel extends JPanel {
     private JButton associarButton;
 
     public AssociacaoPanel() {
-        setLayout(new GridLayout(3, 2));
-        setBackground(Color.CYAN);
+        this.setLayout(new GridLayout(3, 2));
+        this.setBackground(Color.CYAN);
 
-        add(new JLabel("CPF:"));
+        this.add(new JLabel("CPF:"));
         cpfField = new JTextField();
-        add(cpfField);
+        this.add(cpfField);
 
-        add(new JLabel("Evento:"));
+        this.add(new JLabel("Evento:"));
         eventoField = new JTextField();
-        add(eventoField);
+        this.add(eventoField);
 
         associarButton = new JButton("Associar");
         associarButton.addActionListener(new ActionListener() {
@@ -133,7 +133,7 @@ class AssociacaoPanel extends JPanel {
             }
         });
 
-        add(associarButton);
+        this.add(associarButton);
     }
     
 }
@@ -144,7 +144,7 @@ class ListagemPanel extends JPanel {
     private JTextArea listagemTextArea;
 
     public ListagemPanel() {
-        setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout());
         JPanel superiorPanel = new JPanel(new FlowLayout());
         JLabel eventoLabel = new JLabel("Evento:");
         eventoTextField = new JTextField(20);
@@ -165,12 +165,11 @@ class ListagemPanel extends JPanel {
         superiorPanel.add(eventoTextField);
         superiorPanel.add(okButton);
 
-        // TextArea para listagem
         listagemTextArea = new JTextArea();
-        listagemTextArea.setEditable(false); // Para evitar edição pelo usuário
+        listagemTextArea.setEditable(false);
 
-        add(superiorPanel, BorderLayout.NORTH);
-        add(new JScrollPane(listagemTextArea), BorderLayout.CENTER); // Adicionando com ScrollPane
+        this.add(superiorPanel, BorderLayout.NORTH);
+        this.add(new JScrollPane(listagemTextArea), BorderLayout.CENTER);
     }
 
     // Método para atualizar o conteúdo da área de texto com a listagem
