@@ -28,9 +28,38 @@ public class CadastroPessoaController{
         }
         */
 
-        bd.salvar(pessoa);
+        try {
+            if(!existePessoa(pessoa)){
+                bd.salvar(pessoa);
+                JOptionPane.showMessageDialog(view, "Pessoa cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }else{
+                JOptionPane.showMessageDialog(view, "O CPF digitado já está cadastrado! Tente outro.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view, "Erro ao salvar os dados no banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
 
-        JOptionPane.showMessageDialog(view, "Pessoa cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    public boolean existePessoa(Pessoa pessoa){
+        int num=0;
+        Object[] lista = new Object[1000];
+        lista = bd.obterLista("Pessoa");
+        try {
+            for(Object i : lista ) {
+                if(((Pessoa) i).getCPF().equals(pessoa.getCPF())){
+                    return true;
+                }
+                num++;
+            }    
+        } catch (Exception e) {
+            if(num == bd.obterTamanho("Pessoa")){
+                return false;
+            }
+        }
+        return false;
     }
 
     public static boolean validarCPF(String cpf) {

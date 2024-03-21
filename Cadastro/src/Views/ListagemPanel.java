@@ -20,7 +20,7 @@ public class ListagemPanel extends JPanel {
         this.setLayout(new BorderLayout());
         JPanel superiorPanel = new JPanel(new FlowLayout());
         JLabel eventoLabel = new JLabel("Evento:");
-        eventoTextField = new JTextField(20);
+        eventoTextField = new JTextField(30);
         okButton = new JButton("OK");
         okButton.addMouseListener(mouse);
 
@@ -48,14 +48,14 @@ public class ListagemPanel extends JPanel {
     class Mouse extends JFrame implements MouseListener {
 		public void mouseClicked(MouseEvent e){
 	    	if(e.getSource()==okButton) {
-                BD bd = new BD("F:\\As coisas do SSD\\IFF\\6º Período - 2023.2\\Programação Orientada a Objeto (POO)\\Atividade Cadastro T2\\Cadastro\\src\\Util\\");
+                BD bd = new BD(System.getProperty("user.dir")+"\\Cadastro\\src\\Util\\");
 	    		
                 ListagemController controller = new ListagemController(ListagemPanel.this, bd);
                 controller.listar(eventoTextField.getText());
 
                 updateListagem();
 
-                System.out.println("Evento: "+eventoTextField.getText()+" buscado!");
+                //System.out.println("Evento: "+eventoTextField.getText()+" buscado!");
 	    	}
 	    }
 
