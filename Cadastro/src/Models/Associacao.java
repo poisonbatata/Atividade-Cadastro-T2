@@ -1,10 +1,10 @@
 package Models;
 
-public class Cadastro {
+public class Associacao {
     private String CPF;
     private String evento;
 
-    public Cadastro(String CPF, String evento) {
+    public Associacao(String CPF, String evento) {
         this.CPF = CPF;
         this.evento = evento;
     }

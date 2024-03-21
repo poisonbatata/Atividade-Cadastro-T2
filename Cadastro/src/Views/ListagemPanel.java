@@ -1,6 +1,11 @@
 package Views;
 
 import javax.swing.*;
+
+import Controllers.ListagemController;
+import Models.Associacao;
+import Util.BD;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -9,6 +14,7 @@ public class ListagemPanel extends JPanel {
     private JTextField eventoTextField;
     private JButton okButton;
     private JTextArea listagemTextArea;
+    Mouse mouse = new Mouse();
 
     public ListagemPanel() {
         this.setLayout(new BorderLayout());
@@ -16,17 +22,7 @@ public class ListagemPanel extends JPanel {
         JLabel eventoLabel = new JLabel("Evento:");
         eventoTextField = new JTextField(20);
         okButton = new JButton("OK");
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Evento: "+eventoTextField.getText()+" buscado!");
-                //
-                //
-                // FAZER A LÓGICA PRO BOTÃO
-                //
-                //
-            }
-        });
+        okButton.addMouseListener(mouse);
 
         superiorPanel.add(eventoLabel);
         superiorPanel.add(eventoTextField);
@@ -43,4 +39,49 @@ public class ListagemPanel extends JPanel {
     public void updateListagem(String listagem) {
         listagemTextArea.setText(listagem);
     }
+
+    private void clear() {
+        eventoTextField.setText("");
+        listagemTextArea.setText("");
+    }
+
+    class Mouse extends JFrame implements MouseListener {
+		public void mouseClicked(MouseEvent e){
+	    	if(e.getSource()==okButton) {
+                BD bd = new BD("F:\\As coisas do SSD\\IFF\\6º Período - 2023.2\\Programação Orientada a Objeto (POO)\\Atividade Cadastro T2\\Cadastro\\src\\Util\\");
+	    		
+                ListagemController controller = new ListagemController(ListagemPanel.this, bd);
+                controller.listar(eventoTextField.getText());
+
+                updateListagem();
+
+                System.out.println("Evento: "+eventoTextField.getText()+" buscado!");
+	    	}
+	    }
+
+        @Override
+        public void mousePressed(java.awt.event.MouseEvent e) {
+            // TODO Auto-generated method stub
+            //throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
+        }
+
+        @Override
+        public void mouseReleased(java.awt.event.MouseEvent e) {
+            // TODO Auto-generated method stub
+            //throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
+        }
+
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent e) {
+            // TODO Auto-generated method stub
+            //throw new UnsupportedOperationException("Unimplemented method 'mouseEntered'");
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent e) {
+            // TODO Auto-generated method stub
+            //throw new UnsupportedOperationException("Unimplemented method 'mouseExited'");
+        }
+	}
+
 }

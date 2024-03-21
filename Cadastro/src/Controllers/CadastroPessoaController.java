@@ -1,63 +1,73 @@
 package Controllers;
 
+import javax.swing.JOptionPane;
+
 import Util.BD;
 import Views.CadastroPessoaPanel;
+import Models.Pessoa;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class CadastroPessoaController implements ActionListener {
+public class CadastroPessoaController{
     private CadastroPessoaPanel view;
     private BD bd;
 
     public CadastroPessoaController(CadastroPessoaPanel view, BD bd) {
         this.view = view;
         this.bd = bd;
-
-        // Adicionando o listener ao botão Cadastrar
-        this.view.addCadastrarButtonListener(this);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Obtendo os dados digitados nos campos de texto
-        String nome = view.getNome();
-        String cpf = view.getCPF();
-        String email = view.getEmail();
-
-        // Verificando se algum campo está vazio
-        if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty()) {
-            // Exibir mensagem de erro ao usuário
-            JOptionPane.showMessageDialog(view, "Todos os campos devem ser preenchidos!", "Erro",
-                    JOptionPane.ERROR_MESSAGE);
+    public void criarCadastro(Pessoa pessoa){
+        if (pessoa.getNome().isEmpty() || pessoa.getCPF().isEmpty() || pessoa.getEmail().isEmpty()) {
+            JOptionPane.showMessageDialog(view, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Verificando se o CPF é válido (apenas para fins de exemplo)
-        if (!validarCPF(cpf)) {
+        /*
+        if (!validarCPF(pessoa.getCPF())) {
             JOptionPane.showMessageDialog(view, "CPF inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        */
 
-        // Criando um objeto Pessoa com os dados informados
-        Pessoa pessoa = new Pessoa(nome, cpf, email);
-
-        // Salvando a pessoa no banco de dados
         bd.salvar(pessoa);
 
-        // Exibindo mensagem de sucesso ao usuário
-        JOptionPane.showMessageDialog(view, "Pessoa cadastrada com sucesso!", "Sucesso",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        // Limpando os campos de texto após o cadastro
-        view.clearFields();
+        JOptionPane.showMessageDialog(view, "Pessoa cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Método para validar o CPF (apenas para fins de exemplo)
-    private boolean validarCPF(String cpf) {
-        // Adicione aqui a lógica de validação do CPF
-        // Retorne true se o CPF for válido, caso contrário, retorne false
-        // Esta implementação é apenas um exemplo simplificado
+    public static boolean validarCPF(String cpf) {
+        // Verifica se o CPF tem 11 dígitos
+        if (cpf == null || cpf.length() != 11) {
+            return false;
+        }
+        // Verifica se todos os dígitos são iguais
+        if (cpf.matches("(\\d)\\1{10}")) {
+            return false;
+        }
+        // Calcula e verifica os dígitos verificadores
+        int soma = 0;
+        int resto;
+        for (int i = 0; i < 9; i++) {
+            soma += Integer.parseInt(cpf.substring(i, i + 1)) * (10 - i);
+        }
+        resto = 11 - (soma % 11);
+        if (resto == 10 || resto == 11) {
+            resto = 0;
+        }
+        if (resto != Integer.parseInt(cpf.substring(9, 10))) {
+            return false;
+        }
+
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            soma += Integer.parseInt(cpf.substring(i, i + 1)) * (11 - i);
+        }
+        resto = 11 - (soma % 11);
+        if (resto == 10 || resto == 11) {
+            resto = 0;
+        }
+        if (resto != Integer.parseInt(cpf.substring(10))) {
+            return false;
+        }
+
         return true;
     }
 }

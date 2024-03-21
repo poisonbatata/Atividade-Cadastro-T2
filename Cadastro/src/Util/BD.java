@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 
 import Models.Evento;
 import Models.Pessoa;
-import Models.Cadastro;
+import Models.Associacao;
 
 public class BD {
     String path;
@@ -33,9 +33,9 @@ public class BD {
                         + "|" + "\n");
                 arq.close();
             }
-            if (obj instanceof Cadastro) {
+            if (obj instanceof Associacao) {
                 arq = new BufferedWriter(new FileWriter(path + "pessoa_evento.txt", true));
-                arq.write(((Cadastro) obj).getCPF() + "|" + ((Cadastro) obj).getEvento() + "\n");
+                arq.write(((Associacao) obj).getCPF() + "|" + ((Associacao) obj).getEvento() + "\n");
                 arq.close();
             }
         } catch (IOException e) {
@@ -79,14 +79,14 @@ public class BD {
                 }
                 arq.close();
             }
-            if (tipo.equals("Cadastro")) {
+            if (tipo.equals("Associacao")) {
                 arq = new BufferedReader(new FileReader(path + "pessoa_evento.txt"));
                 while (arq.ready()) {
                     linha = arq.readLine();
                     tokens = new StringTokenizer(linha, "|");
                     String np = tokens.nextToken();
                     String na = tokens.nextToken();
-                    Cadastro pa = new Cadastro(np, na);
+                    Associacao pa = new Associacao(np, na);
                     lista[cont] = pa;
                     cont++;
                 }

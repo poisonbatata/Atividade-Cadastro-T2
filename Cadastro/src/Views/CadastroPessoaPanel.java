@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import Controllers.CadastroPessoaController;
+import Models.Pessoa;
+import Util.BD;
 
 public class CadastroPessoaPanel extends JPanel {
     private JTextField nomeField;
@@ -32,35 +34,29 @@ public class CadastroPessoaPanel extends JPanel {
 
         cadastrarButton = new JButton("Cadastrar");
         cadastrarButton.addMouseListener(mouse);
-        /*
-        cadastrarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Pessoa: "+nomeField.getText()+" adicionada!");
-                //
-                //
-                // FAZER A LÓGICA PRO BOTÃO
-                //
-                //
-            }
-        });
-        */
+
         this.add(cadastrarButton);
     }
-/* 
-    public void addCadastrarButtonListener(CadastroPessoaController cadastroPessoaController) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addCadastrarButtonListener'");
+
+    private void clear() {
+        nomeField.setText("");
+        cpfField.setText("");
+        emailField.setText("");
     }
-*/
 
 	class Mouse extends JFrame implements MouseListener {
 		public void mouseClicked(MouseEvent e){
 	    	if(e.getSource()==cadastrarButton) {
-	    		System.out.println("A");
-	    	}
-	    	if(e.getSource()==cadastrarButton) {
-                System.out.println("b");
+                Pessoa pessoa = new Pessoa(nomeField.getText(), cpfField.getText(), emailField.getText());
+                
+                BD bd = new BD("F:\\As coisas do SSD\\IFF\\6º Período - 2023.2\\Programação Orientada a Objeto (POO)\\Atividade Cadastro T2\\Cadastro\\src\\Util\\");
+	    		
+                CadastroPessoaController controller = new CadastroPessoaController(CadastroPessoaPanel.this, bd);
+                controller.criarCadastro(pessoa);
+
+                clear();
+                
+                System.out.println("Pessoa: " + nomeField.getText() +" cadastrada!");
 	    	}
 	    }
 
@@ -88,6 +84,5 @@ public class CadastroPessoaPanel extends JPanel {
             //throw new UnsupportedOperationException("Unimplemented method 'mouseExited'");
         }
 	}
-
 
 }
