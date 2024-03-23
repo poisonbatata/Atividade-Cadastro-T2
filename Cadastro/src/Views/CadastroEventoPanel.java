@@ -49,7 +49,8 @@ public class CadastroEventoPanel extends JPanel {
 	    	if(e.getSource()==cadastrarButton) {
                 Evento evento = new Evento(nomeField.getText(), tipoField.getText(), localField.getText());
                 
-                BD bd = new BD(System.getProperty("user.dir")+"\\Cadastro\\src\\Util\\");
+                BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
+                System.out.println(System.getProperty("user.dir")+"\\src\\Util\\");
 	    		
                 CadastroEventoController controller = new CadastroEventoController(CadastroEventoPanel.this, bd);
                 controller.criarCadastro(evento);

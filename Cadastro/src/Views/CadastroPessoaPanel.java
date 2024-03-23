@@ -49,7 +49,7 @@ public class CadastroPessoaPanel extends JPanel {
 	    	if(e.getSource()==cadastrarButton) {
                 Pessoa pessoa = new Pessoa(nomeField.getText(), cpfField.getText(), emailField.getText());
                 
-                BD bd = new BD(System.getProperty("user.dir")+"\\Cadastro\\src\\Util\\");
+                BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
 	    		
                 CadastroPessoaController controller = new CadastroPessoaController(CadastroPessoaPanel.this, bd);
                 controller.criarCadastro(pessoa);

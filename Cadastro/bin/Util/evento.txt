@@ -1,1 +1,4 @@
-Futebol|Campeonato|Quadra 123|
+Futebol|Campeonato|Quadra 123
+Churrasco|Comida|Restaurante123
+NomeEvento|TipoEvento|LocalEvento
+Kart|Competição|Kartizin

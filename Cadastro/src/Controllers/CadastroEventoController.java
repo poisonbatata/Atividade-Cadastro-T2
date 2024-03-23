@@ -24,7 +24,7 @@ public class CadastroEventoController{
         try {
             if(!existeEvento(evento)){
                 bd.salvar(evento);
-                JOptionPane.showMessageDialog(view, "Evento cadastrada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Evento cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }else{
                 JOptionPane.showMessageDialog(view, "O evento digitado já está cadastrado! Tente outro.", "Erro", JOptionPane.ERROR_MESSAGE);

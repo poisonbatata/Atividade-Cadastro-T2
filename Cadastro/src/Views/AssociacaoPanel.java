@@ -43,7 +43,7 @@ public class AssociacaoPanel extends JPanel {
 	    	if(e.getSource()==associarButton) {
                 Associacao associacao = new Associacao(cpfField.getText(), eventoField.getText());
                 
-                BD bd = new BD(System.getProperty("user.dir")+"\\Cadastro\\src\\Util\\");
+                BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
 	    		
                 AssociacaoController controller = new AssociacaoController(AssociacaoPanel.this, bd);
                 controller.criarCadastro(associacao);

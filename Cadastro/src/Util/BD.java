@@ -29,8 +29,7 @@ public class BD {
             }
             if (obj instanceof Evento) {
                 arq = new BufferedWriter(new FileWriter(path + "evento.txt", true));
-                arq.write(((Evento) obj).getNome() + "|" + ((Evento) obj).getTipo() + "|" + ((Evento) obj).getLocal()
-                        + "|" + "\n");
+                arq.write(((Evento) obj).getNome() + "|" + ((Evento) obj).getTipo() + "|" + ((Evento) obj).getLocal());// + "|" + "\n");
                 arq.close();
             }
             if (obj instanceof Associacao) {
@@ -72,7 +71,7 @@ public class BD {
                     String na = tokens.nextToken();
                     String ta = tokens.nextToken();
                     String la = tokens.nextToken();
-                    String IDa = tokens.nextToken();
+                    //String IDa = tokens.nextToken();
                     Evento a = new Evento(na, ta, la);
                     lista[cont] = a;
                     cont++;

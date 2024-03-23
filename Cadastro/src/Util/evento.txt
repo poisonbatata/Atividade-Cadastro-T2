@@ -1,4 +1,4 @@
-Futebol|Campeonato|Quadra 123|
-Churrasco|Comida|Restaurante123|
-asdasd|asd|asdas|
-Churrasco|tassaf|sggas|
+Futebol|Campeonato|Quadra 123
+Churrasco|Comida|Restaurante123
+NomeEvento|TipoEvento|LocalEvento
+Kart|Competição|Kartizin

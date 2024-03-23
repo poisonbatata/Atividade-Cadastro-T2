@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import Controllers.ListagemController;
 import Models.Associacao;
+import Models.Evento;
 import Util.BD;
 
 import java.awt.*;
@@ -36,8 +37,23 @@ public class ListagemPanel extends JPanel {
     }
 
     // Método para atualizar o conteúdo da área de texto com a listagem
-    public void updateListagem(String listagem) {
-        listagemTextArea.setText(listagem);
+    public void updateListagem(Object[] listagem){
+        listagemTextArea.setFont(new Font("Sans Serif", Font.ITALIC, 15));
+        //BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
+        for(Object i : listagem ) {
+            listagemTextArea.append((String) i);
+            listagemTextArea.append("\n");
+            /*
+            System.out.println("AAAAAAAA");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+            System.out.println("BBBBBB");
+            */
+
+        } 
     }
 
     private void clear() {
@@ -48,12 +64,11 @@ public class ListagemPanel extends JPanel {
     class Mouse extends JFrame implements MouseListener {
 		public void mouseClicked(MouseEvent e){
 	    	if(e.getSource()==okButton) {
-                BD bd = new BD(System.getProperty("user.dir")+"\\Cadastro\\src\\Util\\");
-	    		
+                BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
                 ListagemController controller = new ListagemController(ListagemPanel.this, bd);
-                controller.listar(eventoTextField.getText());
-
-                updateListagem();
+                
+                //updateListagem(controller.listar(eventoTextField.getText()));
+                updateListagem(controller.listar("Associacao"));
 
                 //System.out.println("Evento: "+eventoTextField.getText()+" buscado!");
 	    	}
