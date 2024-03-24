@@ -11,7 +11,6 @@ public class Evento {
         this.local = local;
     }
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }

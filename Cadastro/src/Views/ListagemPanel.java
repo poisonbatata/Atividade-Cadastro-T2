@@ -35,26 +35,6 @@ public class ListagemPanel extends JPanel {
         this.add(new JScrollPane(listagemTextArea), BorderLayout.CENTER);
     }
 
-    // Método para atualizar o conteúdo da área de texto com a listagem
-    /*public void updateListagem(Object[] listagem){
-        listagemTextArea.setFont(new Font("Sans Serif", Font.ITALIC, 13));
-        //BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
-        for(Object i : listagem ) {
-            listagemTextArea.append((String) i);
-            listagemTextArea.append("\n");
-            /*
-            System.out.println("AAAAAAAA");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-            }
-            System.out.println("BBBBBB");
-            /
-
-        } 
-    }*/
-
     public void updateListagem(Object[] listagem){
         listagemTextArea.setFont(new Font("Times New Roman", Font.ITALIC, 14));
         for(Object obj : listagem ) {
@@ -65,7 +45,6 @@ public class ListagemPanel extends JPanel {
         } 
     }
     
-
     private void clear(String choice) {
         if(choice=="NomeDoEvento") {
             eventoTextField.setText("");

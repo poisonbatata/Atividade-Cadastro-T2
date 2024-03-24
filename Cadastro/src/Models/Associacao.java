@@ -9,7 +9,6 @@ public class Associacao {
         this.evento = evento;
     }
 
-    // Getters e Setters
     public String getCPF() {
         return CPF;
     }

@@ -22,34 +22,3 @@ public class Janela extends JFrame {
         this.setVisible(true);
     }
 }
-
-
-/*
-class ListagemPanel extends JPanel {
-    private JTextArea listaTextArea;
-    private JLabel l;
-    private Container container;
-
-    public ListagemPanel() {
-        setLayout(new BorderLayout());
-        container = this.getRootPane();
-        //container.setLayout(null);
-        setBackground(Color.GRAY);
-
-        l = new JLabel("A");
-		l.setSize(80, 30);
-		l.setLocation(50, 50);
-		l.setForeground(Color.white);
-		this.add(l);
-
-        listaTextArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(listaTextArea);
-        add(scrollPane, BorderLayout.CENTER);
-    }
-
-    public JTextArea getListaTextArea() {
-        return listaTextArea;
-    }
-
-}
-*/
