@@ -4,7 +4,6 @@ import javax.swing.*;
 
 import Controllers.ListagemController;
 import Models.Associacao;
-import Models.Evento;
 import Util.BD;
 
 import java.awt.*;
