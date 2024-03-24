@@ -37,8 +37,8 @@ public class ListagemPanel extends JPanel {
     }
 
     // Método para atualizar o conteúdo da área de texto com a listagem
-    public void updateListagem(Object[] listagem){
-        listagemTextArea.setFont(new Font("Sans Serif", Font.ITALIC, 15));
+    /*public void updateListagem(Object[] listagem){
+        listagemTextArea.setFont(new Font("Sans Serif", Font.ITALIC, 13));
         //BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
         for(Object i : listagem ) {
             listagemTextArea.append((String) i);
@@ -51,14 +51,31 @@ public class ListagemPanel extends JPanel {
                 Thread.currentThread().interrupt();
             }
             System.out.println("BBBBBB");
-            */
+            /
 
         } 
-    }
+    }*/
 
-    private void clear() {
-        eventoTextField.setText("");
-        listagemTextArea.setText("");
+    public void updateListagem(Object[] listagem){
+        listagemTextArea.setFont(new Font("Times New Roman", Font.ITALIC, 14));
+        for(Object obj : listagem ) {
+            if (obj instanceof Associacao) {
+                Associacao associacao = (Associacao) obj;
+                listagemTextArea.append("CPF: " + associacao.getCPF() + ", Evento: " + associacao.getEvento() + "\n");
+            }
+        } 
+    }
+    
+
+    private void clear(String choice) {
+        if(choice=="NomeDoEvento") {
+            eventoTextField.setText("");
+        } else if(choice=="ListagemDosCPFs") {
+            listagemTextArea.setText("");
+        } else if (choice=="Tudo") {
+            eventoTextField.setText("");
+            listagemTextArea.setText("");
+        }
     }
 
     class Mouse extends JFrame implements MouseListener {
@@ -67,10 +84,8 @@ public class ListagemPanel extends JPanel {
                 BD bd = new BD(System.getProperty("user.dir")+"\\src\\Util\\");
                 ListagemController controller = new ListagemController(ListagemPanel.this, bd);
                 
-                //updateListagem(controller.listar(eventoTextField.getText()));
-                updateListagem(controller.listar("Associacao"));
-
-                //System.out.println("Evento: "+eventoTextField.getText()+" buscado!");
+                clear("ListagemDosCPFs");
+                updateListagem(controller.listar(eventoTextField.getText()));
 	    	}
 	    }
 

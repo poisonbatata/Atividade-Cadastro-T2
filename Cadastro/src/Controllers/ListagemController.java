@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import Util.BD;
 import Views.ListagemPanel;
-//import Models.Associacao;
+import Models.Associacao;
 
 public class ListagemController{
     private ListagemPanel view;
@@ -16,52 +16,28 @@ public class ListagemController{
     }
 
     public Object[] listar(String string){
-        //System.out.println("Listagem:     "+bd.obterLista(string));
-        //return bd.obterLista(string);
-        String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
-        return cars;
-    }
-}
-/*
-    public void criarCadastro(Evento evento){
-        if (evento.getNome().isEmpty() || evento.getTipo().isEmpty() || evento.getLocal().isEmpty()) {
-            JOptionPane.showMessageDialog(view, "Todos os campos devem ser preenchidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        Object[] listaGeral = bd.obterLista("Associacao");
+        Object[] listaEvento = new Object[1000];
+        int index = 0;
+        boolean existe = false;
+
+        if(string.equals("*")){return listaGeral;} // Listar todas as associações
 
         try {
-            if(!existeEvento(evento)){
-                bd.salvar(evento);
-                JOptionPane.showMessageDialog(view, "Evento cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }else{
-                JOptionPane.showMessageDialog(view, "O evento digitado já está cadastrado! Tente outro.", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(view, "Erro ao salvar os dados no banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-    }
-
-    public boolean existeEvento(Evento evento){
-        int num=0;
-        Object[] lista = new Object[1000];
-        lista = bd.obterLista("Evento");
-        try {
-            for(Object i : lista ) {
-                if(((Evento) i).getNome().equals(evento.getNome())){
-                    return true;
+            for(Object item : listaGeral ) {
+                if(((Associacao) item).getEvento().equals(string)){
+                    listaEvento[index] = ((Associacao) item);
+                    existe = true;
                 }
-                num++;
+                index++;
             }    
         } catch (Exception e) {
-            if(num == bd.obterTamanho("Evento")){
-                return false;
+            if(!existe){
+                JOptionPane.showMessageDialog(view, "Este evento não existe ou não há ninguém associado a ele.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return listaEvento;
             }
         }
-        return false;
-    }
 
+        return listaEvento;
+    }
 }
-*/
